@@ -2,11 +2,12 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
-  i18n: {
-    defaultLocale: 'id',
-    locales: ['id', 'en'],
-    localeDetection: false,
-  },
+  // TODO: fix issue i18n support is not compatible with next export.
+  // i18n: {
+  //   defaultLocale: 'id',
+  //   locales: ['id', 'en'],
+  //   localeDetection: false,
+  // },
 }
 
 module.exports = nextConfig
