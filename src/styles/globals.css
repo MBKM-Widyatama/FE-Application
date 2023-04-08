@@ -40,3 +40,18 @@ a {
 .site-layout .site-layout-background {
   background: #fff;
 }
+
+.next-image-container {
+  width: 100%;
+}
+
+.next-image-container > div {
+  position: unset !important;
+}
+
+.next-image-container .image {
+  object-fit: contain;
+  width: 100% !important;
+  position: relative !important;
+  height: unset !important;
+}

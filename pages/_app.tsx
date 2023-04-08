@@ -7,9 +7,9 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <ReactQueryProvider>
       <AntdProvider>
-        <MainLayout>
-          <Component {...pageProps} />
-        </MainLayout>
+        {/* <MainLayout> */}
+        <Component {...pageProps} />
+        {/* </MainLayout> */}
       </AntdProvider>
     </ReactQueryProvider>
   )
