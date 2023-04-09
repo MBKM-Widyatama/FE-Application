@@ -1,18 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+
 html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  /* font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif; */
+}
+
+* {
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif !important;
+}
+
+::-webkit-scrollbar {
+  display: 'none';
+  width: 0;
+  height: 0;
+  background: transparent;
+}
+
+.font-montserrat {
+  font-family: 'Montserrat', sans-serif !important;
 }
 
 a {
   color: inherit;
   text-decoration: none;
-}
-
-* {
-  box-sizing: border-box;
 }
 
 .trigger {
@@ -31,4 +46,19 @@ a {
 
 .site-layout .site-layout-background {
   background: #fff;
+}
+
+.next-image-container {
+  width: 100%;
+}
+
+.next-image-container > div {
+  position: unset !important;
+}
+
+.next-image-container .image {
+  object-fit: contain;
+  width: 100% !important;
+  position: relative !important;
+  height: unset !important;
 }
