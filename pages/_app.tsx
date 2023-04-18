@@ -10,9 +10,9 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <ReactQueryProvider>
       <AntdProvider>
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
+        {/* <Layout> */}
+        <Component {...pageProps} />
+        {/* </Layout> */}
       </AntdProvider>
     </ReactQueryProvider>
   )
