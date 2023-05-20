@@ -1,34 +1,53 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Deskripsi Branch
 
-## Getting Started
+Terdapat beberapa branch dengan detail sebagai berikut:
+Nama Branch | Deskripsi
+------------- | -------------
+main | branch untuk production
+staging | branch untuk server client
+development | branch untuk server developmet
 
-First, run the development server:
+## Git Commit Convention
 
-```bash
-npm run dev
-# or
-yarn dev
+Bekerja dengan **atomic git commits**, _berarti commit Anda berukuran sekecil mungkin. Setiap komit melakukan satu, dan hanya satu hal sederhana, yang dapat diringkas dalam kalimat sederhana. Jumlah perubahan kode tidak masalah._
+
+beberapa contoh untuk melakukan pesan:
+
+```
+[Ticket] - (feature/improvement/fix): Jelaskan apa yang terjadi pada perubahan ini.
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+# Git Branch Convention
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+Gunakan awalan **feature/** saat mengerjakan fitur DAN **fixing/** saat Anda memperbaiki masalah.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+beberapa contoh untuk nama cabang:
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+```
+feature/master-karyawan
+```
 
-## Learn More
+```
+fixing/error-on-create-employee
+```
 
-To learn more about Next.js, take a look at the following resources:
+# Merge Request Convention
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Saat membuat merge request di platform gitlab, ada beberapa informasi yang perlu Anda masukkan diantaranya:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+### Title
 
-## Deploy on Vercel
+Isikan judul dengan ringkasan perubahan (disertakan dengan ticket). contoh: **[Ticket] - (type): Create employee module**
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Description
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Isikan informasi perubahan yang lebih detail dan langkah-langkah yang perlu disesuaikan jika ada. contoh:
+
+```
+- [Ticket] - Feature: Create an employee page.
+- [Ticket] - Improvements: Added the authorization process on the employee page. ref(#FEATURE002)
+
+Notes: Please install library before deploy.
+```
+
+Catatan: Harap **pisahkan** MR untuk fitur dan hotfix agar memudahkan proses pelacakan perubahan di masa mendatang.

@@ -10,8 +10,8 @@ export default function AntdProvider({ children }: React.PropsWithChildren) {
       theme={{
         algorithm: isDarkMode ? theme.darkAlgorithm : theme.defaultAlgorithm,
         token: {
-          colorPrimary: '#001D66',
-          colorFillSecondary: '#D46B08',
+          colorPrimary: '#0084F4',
+          colorFillSecondary: '#4046FD',
         },
       }}
     >
