@@ -7,6 +7,15 @@ const nextConfig = {
     locales: ['id', 'en'],
     localeDetection: false,
   },
+  async redirects() {
+    return [
+      {
+        source: '/',
+        destination: '/landing',
+        permanent: true,
+      },
+    ]
+  },
 }
 
 module.exports = nextConfig
