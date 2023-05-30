@@ -16,7 +16,7 @@ export default function PublicLayout(props: React.PropsWithChildren) {
       <div
         style={{
           width: '100vw',
-          maxWidth: 1366,
+          maxWidth: 1560,
           minHeight: '100vh',
           position: 'relative',
           overflow: 'hidden',
