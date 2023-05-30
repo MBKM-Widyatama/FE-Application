@@ -1,5 +1,6 @@
 import React from 'react'
 import Image from 'next/image'
+import { useRouter } from 'next/router'
 
 // antd components
 import { Button, Col, Row, Typography } from 'antd'
@@ -8,6 +9,8 @@ import { Button, Col, Row, Typography } from 'antd'
 import { ICBimaUtama } from '@utama/assets/icons'
 
 export default function Header() {
+  const router = useRouter()
+
   const { Title } = Typography
 
   return (
@@ -26,7 +29,8 @@ export default function Header() {
         <Title
           level={3}
           className="font-montserrat"
-          style={{ margin: 0, marginLeft: 10, fontWeight: 'bold' }}
+          style={{ marginLeft: 10, fontWeight: 'bold' }}
+          onClick={() => router.push('/landing')}
         >
           BIMAUTAMA
         </Title>
@@ -34,23 +38,30 @@ export default function Header() {
       <Col style={{ display: 'flex', alignItems: 'center' }}>
         <Title
           level={5}
-          style={{ margin: 0, marginRight: 40, fontWeight: 600 }}
+          style={{ marginRight: 40, fontWeight: 600 }}
+          onClick={() => router.push('')}
         >
           Guide
         </Title>
         <Title
           level={5}
-          style={{ margin: 0, marginRight: 40, fontWeight: 600 }}
+          style={{ marginRight: 40, fontWeight: 600 }}
+          onClick={() => router.push('')}
         >
           About BIMAUTAMA
         </Title>
         <Title
           level={5}
-          style={{ margin: 0, marginRight: 40, fontWeight: 600 }}
+          style={{ marginRight: 40, fontWeight: 600 }}
+          onClick={() => router.push('')}
         >
           Annoucements
         </Title>
-        <Title level={5} style={{ margin: 0, fontWeight: 600 }}>
+        <Title
+          level={5}
+          style={{ fontWeight: 600 }}
+          onClick={() => router.push('/news')}
+        >
           News
         </Title>
       </Col>

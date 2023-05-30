@@ -40,6 +40,17 @@ a {
   text-decoration: none;
 }
 
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-bottom: 0 !important;
+  margin-top: 0 !important;
+}
+
 .text-gradient {
   background: -webkit-linear-gradient(0deg, #4046fd, #40b4fd);
   -webkit-background-clip: text;
