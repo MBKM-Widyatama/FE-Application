@@ -1,6 +1,6 @@
 import '@utama/styles/globals.css'
 import type { AppProps } from 'next/app'
-import { AntdProvider, ReactQueryProvider } from '@utama/providers'
+import { MaterialUiProvider, ReactQueryProvider } from '@utama/providers'
 import React from 'react'
 import { useLayout } from '@utama/utils/hooks'
 
@@ -9,11 +9,11 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   return (
     <ReactQueryProvider>
-      <AntdProvider>
-        {/* <Layout> */}
-        <Component {...pageProps} />
-        {/* </Layout> */}
-      </AntdProvider>
+      <MaterialUiProvider>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </MaterialUiProvider>
     </ReactQueryProvider>
   )
 }

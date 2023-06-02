@@ -1,8 +1,11 @@
 import React from 'react'
 import Image from 'next/image'
 
-// antd components
-import { Col, Row, Typography, Button } from 'antd'
+// MUI Components
+import Typography from '@mui/material/Typography'
+import Grid from '@mui/material/Grid'
+
+// Assets
 import {
   ICBrieftCase,
   ICGift,
@@ -13,17 +16,6 @@ import {
 } from '@utama/assets'
 
 export default function PageSignIn() {
-  const { Title, Text, Paragraph } = Typography
-
-  const sampleLabels = [
-    'Self Improvement',
-    'Writing',
-    'Productivity',
-    'Relationships',
-    'Politics',
-    'Education',
-  ]
-
   const features = [
     {
       icon: ICBrieftCase,
@@ -60,32 +52,28 @@ export default function PageSignIn() {
   return (
     <div style={{ width: '100%', textAlign: 'center', marginBottom: 140 }}>
       <div style={{ marginBottom: 60 }}>
-        <Text
-          className="text-gradient"
-          style={{ fontWeight: 600, fontSize: 16 }}
-        >
+        <Typography className="text-gradient" fontWeight={600}>
           Work Better
-        </Text>
-        <Title
-          style={{ fontSize: 36, fontWeight: 700, margin: '5px 0 20px 0' }}
+        </Typography>
+        <Typography
+          variant="h4"
+          fontWeight="bold"
+          sx={{ fontSize: 36, mt: 0.5, mb: 2.5 }}
         >
           For Your Future
-        </Title>
-        <Text style={{ fontSize: 16, color: '#575455' }}>
-          Let&apos;s discover new knowledge and new friends and have a learning
+        </Typography>
+        <Typography style={{ color: '#575455', lineHeight: 2 }}>
+          We did research what your company needs and
           <br />
-          experience with beautiful teachers
-        </Text>
+          here we are providing all of them just for you
+        </Typography>
       </div>
-      <Row
-        // align="top"
-        gutter={[120, 60]}
-        style={{ padding: '0 150px' }}
-      >
+      <Grid container columnSpacing={13} rowSpacing={7.5} sx={{ px: 18.75 }}>
         {features.map(
           (item: { icon: any; title: string; desc: string }, index: number) => (
-            <Col
-              span={8}
+            <Grid
+              item
+              xs={4}
               key={index}
               style={{
                 display: 'flex',
@@ -99,25 +87,25 @@ export default function PageSignIn() {
                 style={{ marginRight: 24 }}
               ></Image>
               <div style={{ textAlign: 'left' }}>
-                <Title
-                  level={5}
+                <Typography
+                  variant="h6"
                   style={{ margin: 0, marginBottom: 8, fontSize: 20 }}
                 >
                   {item.title}
-                </Title>
-                <Text
+                </Typography>
+                <Typography
                   style={{
                     fontSize: 16,
                     color: '#575455',
                   }}
                 >
                   {item.desc}
-                </Text>
+                </Typography>
               </div>
-            </Col>
+            </Grid>
           ),
         )}
-      </Row>
+      </Grid>
     </div>
   )
 }

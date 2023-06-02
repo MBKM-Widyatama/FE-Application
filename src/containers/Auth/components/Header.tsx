@@ -1,54 +1,39 @@
 import React from 'react'
 import Image from 'next/image'
 
-// antd components
-import { Button, Col, Row, Typography } from 'antd'
+// MUI Components
+import Typography from '@mui/material/Typography'
+import Grid from '@mui/material/Grid'
+
+// Custom Components
+import Button from '@components/Button'
 
 // assets
 import { ICBimaUtama } from '@utama/assets/icons'
 
 export default function Header() {
-  const { Title } = Typography
-
   return (
-    <Row align="middle" style={{ padding: '50px 100px' }}>
-      <Col flex={1} style={{ display: 'flex', alignItems: 'center' }}>
+    <Grid container sx={{ px: 12.5, py: 6.25 }}>
+      <Grid item flex={1} sx={{ display: 'flex', alignItems: 'center' }}>
         <Image
           src={ICBimaUtama}
           alt="Icon Bima Utama"
           width={28}
           height={28}
         ></Image>
-        <Title
-          level={3}
+        <Typography
+          variant="h5"
+          fontWeight="bold"
           className="font-montserrat"
-          style={{ margin: 0, marginLeft: 10, fontWeight: 'bold' }}
+          sx={{ ml: 1.25 }}
         >
-          BIMAUTAMA
-        </Title>
-      </Col>
-      <Col style={{ display: 'flex', alignItems: 'center' }}>
-        <Title level={5} style={{ margin: 0, marginRight: 12 }}>
-          Don’t have an account?
-        </Title>
-        <Button
-          type="primary"
-          shape="round"
-          size="large"
-          style={{
-            fontSize: 14,
-            fontWeight: 500,
-            background:
-              'linear-gradient(89.11deg, #2C5BF7 1.73%, #40B4FD 98.05%)',
-            boxShadow: 'none',
-            border: 0,
-            padding: '0 28px',
-            height: 46,
-          }}
-        >
-          Sign Up
-        </Button>
-      </Col>
-    </Row>
+          SIMLITAMAS UTAMA
+        </Typography>
+      </Grid>
+      <Grid item sx={{ display: 'flex', alignItems: 'center' }}>
+        <Typography sx={{ mr: 1.5 }}>Don’t have an account?</Typography>
+        <Button label="Sign Up" onClick={() => {}} />
+      </Grid>
+    </Grid>
   )
 }
