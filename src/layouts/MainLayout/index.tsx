@@ -14,28 +14,86 @@ import CssBaseline from '@mui/material/CssBaseline'
 import ListItemIcon from '@mui/material/ListItemIcon'
 import ListItemButton from '@mui/material/ListItemButton'
 import Tooltip from '@mui/material/Tooltip'
-import Grid from '@mui/material/Grid'
 import Typography from '@mui/material/Typography'
 import IconButton from '@mui/material/IconButton/'
 import ListItemText from '@mui/material/ListItemText'
+import Collapse from '@mui/material/Collapse'
 
 // Mui Icon
-import LogoutIcon from '@mui/icons-material/Logout'
+import MenuRoundedIcon from '@mui/icons-material/MenuRounded'
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft'
+import ExpandLess from '@mui/icons-material/ExpandLess'
+import ExpandMore from '@mui/icons-material/ExpandMore'
 
-// import { listMenu } from './listMenu'
-
-// import Image from 'next/image'
-import { ICBimaUtama } from '@utama/assets'
-import { useMainStore } from '@utama/utils/stores/main'
+import { ICBimaUtama } from '@utama/assets/icons'
+import { listMenu, Menu } from './listMenu'
 import { Drawer, DrawerHeader } from './styles'
 
+// assets
 export default function MainLayout(props: React.PropsWithChildren) {
   const router = useRouter()
 
   const [isDrawerOpen, setIsDrawerOpen] = useState(true)
 
-  const { menuItems } = useMainStore()
+  const MenuItem = ({ item }: any) => {
+    const [open, setOpen] = useState(true)
+
+    return (
+      <>
+        <Tooltip title={item.label} placement="right">
+          <ListItemButton
+            selected={router.asPath === item.path}
+            // eslint-disable-next-line no-confusing-arrow
+            onClick={() =>
+              item.children ? setOpen(!open) : router.push(item.path)
+            }
+          >
+            {item.icon && (
+              <ListItemIcon
+                sx={{
+                  padding: isDrawerOpen ? '8px 0 8px 24px' : '4px 0 4px 8px',
+                }}
+              >
+                <Image
+                  src={
+                    router.asPath === item.path ? item.iconActive : item.icon
+                  }
+                  alt={item.label}
+                  width={24}
+                  height={24}
+                />
+              </ListItemIcon>
+            )}
+            {isDrawerOpen && (
+              <ListItemText
+                primary={
+                  <Typography
+                    style={{
+                      color: router.asPath === item.path ? 'white' : '#828282',
+                      fontWeight: router.asPath === item.path ? 600 : 400,
+                    }}
+                  >
+                    {item.label}
+                  </Typography>
+                }
+              />
+            )}
+
+            {item.children && <>{open ? <ExpandLess /> : <ExpandMore />}</>}
+          </ListItemButton>
+        </Tooltip>
+        {isDrawerOpen && item.children && (
+          <Collapse in={open} timeout="auto" unmountOnExit>
+            <List component="div" disablePadding sx={{ pl: 7 }}>
+              {item.children.map((child: Menu, index: number) => (
+                <MenuItem key={index} item={child} />
+              ))}
+            </List>
+          </Collapse>
+        )}
+      </>
+    )
+  }
 
   return (
     <Box sx={{ display: 'flex' }}>
@@ -47,7 +105,7 @@ export default function MainLayout(props: React.PropsWithChildren) {
             position: 'fixed',
             zIndex: 9991,
             marginTop: 4,
-            marginLeft: 27,
+            marginLeft: 39,
             border: '1px solid #dddddd',
             backgroundColor: 'white',
           }}
@@ -60,14 +118,14 @@ export default function MainLayout(props: React.PropsWithChildren) {
           {isDrawerOpen ? (
             <>
               <Image
-                src="/illustrations/leapfactor-logo-bg.png"
-                alt="Logo Leapfactor"
-                width={40}
-                height={40}
+                src={ICBimaUtama}
+                alt="Logo Abimas"
+                width={28}
+                height={28}
                 priority
               />
               <Typography variant="h5" fontWeight={600} sx={{ marginLeft: 1 }}>
-                Leapfactor
+                SIMLITAMAS
               </Typography>
             </>
           ) : (
@@ -75,12 +133,7 @@ export default function MainLayout(props: React.PropsWithChildren) {
               onClick={() => setIsDrawerOpen(true)}
               sx={{ marginTop: -2 }}
             >
-              <Image
-                src="/icons/burger-icon.png"
-                alt="Leapfactor Logo"
-                width={24}
-                height={24}
-              />
+              <MenuRoundedIcon />
             </IconButton>
           )}
         </DrawerHeader>
@@ -88,11 +141,9 @@ export default function MainLayout(props: React.PropsWithChildren) {
           sx={{
             // selected states
             '&& .Mui-selected, && .Mui-selected:hover': {
-              backgroundColor: '#1d68b810',
-              borderLeft: isDrawerOpen
-                ? '5px solid #1d68b8'
-                : '3px solid #1d68b8',
-              paddingLeft: isDrawerOpen ? 1.3 : 1.75,
+              background:
+                'linear-gradient(89.11deg, #2C5BF7 1.73%, #40B4FD 98.05%);',
+              borderRadius: 2,
             },
 
             // hover states
@@ -101,98 +152,12 @@ export default function MainLayout(props: React.PropsWithChildren) {
             },
 
             paddingTop: isDrawerOpen ? 3 : 0,
+            px: isDrawerOpen ? 2 : 0,
           }}
         >
-          {isDrawerOpen && (
-            <Typography
-              variant="body1"
-              sx={{ paddingLeft: 3, marginBottom: 2 }}
-            >
-              Main Menu
-            </Typography>
-          )}
-          {menuItems.map((item: any, index: number) => (
-            <Link
-              key={index}
-              href={item.path}
-              style={{ textDecoration: 'none', color: 'black' }}
-            >
-              <Tooltip title={item.title} placement="right">
-                <ListItemButton
-                  selected={router.pathname === item.path}
-                  onClick={() => router.push(item.path)}
-                >
-                  <ListItemIcon
-                    sx={{
-                      padding: isDrawerOpen
-                        ? '8px 0 8px 24px'
-                        : '4px 0 4px 8px',
-                    }}
-                  >
-                    <Image
-                      src={
-                        router.pathname === item.path
-                          ? item.iconActive
-                          : item.icon
-                      }
-                      alt={item.title}
-                      width={24}
-                      height={24}
-                    />
-                  </ListItemIcon>
-                  {isDrawerOpen && (
-                    <ListItemText
-                      primary={
-                        <Typography
-                          style={{
-                            color:
-                              router.pathname === item.path
-                                ? '#1d68b8'
-                                : '#8097B3',
-                            fontWeight:
-                              router.pathname === item.path ? 600 : 400,
-                          }}
-                        >
-                          {item.title}
-                        </Typography>
-                      }
-                    />
-                  )}
-                </ListItemButton>
-              </Tooltip>
-            </Link>
+          {listMenu.map((item: any, index: number) => (
+            <MenuItem item={item} key={index} />
           ))}
-          <Tooltip title="Logout" placement="right">
-            <ListItemButton
-            // onClick={() => {
-            //   setOpenDialog(true)
-            // }}
-            >
-              <ListItemIcon
-                sx={{
-                  padding: isDrawerOpen ? '8px 0 8px 24px' : '4px 0 4px 8px',
-                }}
-              >
-                <Image
-                  src="/icons/logout-icon.png"
-                  alt="Logout"
-                  width={24}
-                  height={24}
-                />
-              </ListItemIcon>
-              <ListItemText
-                primary={
-                  <Typography
-                    sx={{
-                      color: '#8097B3',
-                    }}
-                  >
-                    Logout
-                  </Typography>
-                }
-              />
-            </ListItemButton>
-          </Tooltip>
         </List>
       </Drawer>
       <Box
