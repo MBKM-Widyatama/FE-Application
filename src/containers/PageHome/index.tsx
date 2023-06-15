@@ -1,5 +1,5 @@
 import { useExampleStore } from '@utama/utils/stores/example'
-import { Button } from 'antd'
+// import { Button } from 'antd'
 import React from 'react'
 
 export default function PageHome() {
@@ -8,7 +8,7 @@ export default function PageHome() {
     <>
       <div>PageHome</div>
       <div>Number: {myNumber}</div>
-      <Button onClick={increaseNumber}>Increase Number</Button>
+      {/* <Button onClick={increaseNumber}>Increase Number</Button> */}
     </>
   )
 }

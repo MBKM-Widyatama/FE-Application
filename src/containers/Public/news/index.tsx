@@ -1,17 +1,15 @@
 import React from 'react'
 import Image from 'next/image'
 
-import { PublicLayout } from '@utama/layouts/'
+// MUI Components
+import Grid from '@mui/material/Grid'
+import Typography from '@mui/material/Typography'
+import Box from '@mui/material/Box'
 
 // assets
 import { ILSampleArticleCover } from '@utama/assets/ilustrations'
 
-// antd components
-import { Col, Row, Typography } from 'antd'
-
-export default function PageSignIn() {
-  const { Title, Text, Paragraph } = Typography
-
+export default function SectionNews() {
   const sampleLabels = [
     'Self Improvement',
     'Writing',
@@ -22,97 +20,88 @@ export default function PageSignIn() {
   ]
 
   return (
-    <PublicLayout>
-      <Row
-        align="top"
-        gutter={[0, 40]}
-        style={{ padding: 100, paddingTop: 60 }}
-      >
-        <Col span={24} style={{ display: 'flex' }}>
-          <Text style={{ fontWeight: 600, fontSize: 16 }}>BIMAUTAMA</Text>
-          <Text style={{ margin: '0 12px', fontWeight: 600 }}>{'>'}</Text>
-          <Text style={{ color: '#AAAAAA', fontSize: 16 }}>News</Text>
-        </Col>
-
-        <Col span={16}>
-          {[1, 2, 3].map((item: any) => (
-            <Row gutter={[0, 0]} key={item} style={{ marginBottom: 50 }}>
-              <Col span={15}>
-                <Title
-                  level={3}
-                  style={{ margin: 0, marginBottom: 20, fontWeight: 600 }}
-                >
-                  Pengumuman Peserta FGA - Bootcamp Batch 1 Tahun 2023
-                </Title>
-                <Paragraph style={{ color: '#757575', fontWeight: 300 }}>
-                  Hello BIMAUTAMAS! Selamat! Bagi Anda yang terpilih sebagai
-                  Peserta Bootcamp Fresh Graduate Academy Digital Talent
-                  Scholarship Batch 1 Tahun 2023 (FGA DTS), program ...
-                </Paragraph>
-                <div style={{ display: 'flex', alignItems: 'center' }}>
-                  <Paragraph
-                    style={{ color: '#757575', fontWeight: 300, margin: 0 }}
-                  >
-                    16 March 2023
-                  </Paragraph>
-                  <div
-                    style={{
-                      width: 6,
-                      height: 6,
-                      borderRadius: 100,
-                      backgroundColor: '#D9D9D9',
-                      marginLeft: 10,
-                      marginRight: 10,
-                    }}
-                  ></div>
-                  <div
-                    style={{
-                      background: '#F2F2F2',
-                      borderRadius: 16,
-                      padding: '8px 12px',
-                      fontSize: 12,
-                    }}
-                  >
-                    Relationships
-                  </div>
-                </div>
-              </Col>
-              <Col span={9}>
-                <Image
-                  src={ILSampleArticleCover}
-                  alt="sample"
-                  fill
-                  style={{ borderRadius: 4, paddingLeft: 34 }}
-                ></Image>
-              </Col>
-            </Row>
-          ))}
-        </Col>
-        <Col span={8} style={{ paddingLeft: 58 }}>
-          <Paragraph
-            style={{ fontWeight: 600, fontSize: 16, marginBottom: 30 }}
-          >
-            Discover more of what matters to you
-          </Paragraph>
-          <div style={{ display: 'flex', flexWrap: 'wrap' }}>
-            {sampleLabels.map((item: any) => (
-              <div
-                style={{
-                  background: '#F2F2F2',
-                  borderRadius: 16,
-                  padding: '8px 12px',
-                  fontSize: 12,
-                  marginRight: 8,
-                  marginBottom: 12,
-                }}
-                key={item}
+    <Grid container sx={{ p: 12.5, pt: 7.5 }}>
+      <Grid item xs={12} sx={{ display: 'flex', mb: 5 }}>
+        <Typography fontWeight={600}>BIMAUTAMA</Typography>
+        <Typography fontWeight={600} sx={{ mx: 1.5 }}>
+          {'>'}
+        </Typography>
+        <Typography style={{ color: '#AAAAAA' }}>News</Typography>
+      </Grid>
+      <Grid item container xs={8} rowSpacing={6.5}>
+        {[1, 2, 3].map((item: any) => (
+          <Grid item container key={item}>
+            <Grid item xs={7}>
+              <Typography variant="h5" fontWeight={600} sx={{ mb: 2.5 }}>
+                Pengumuman Peserta FGA - Bootcamp Batch 1 Tahun 2023
+              </Typography>
+              <Typography
+                variant="body2"
+                fontWeight={300}
+                sx={{ color: '#757575', mb: 3 }}
               >
-                {item}
-              </div>
-            ))}
-          </div>
-        </Col>
-      </Row>
-    </PublicLayout>
+                Hello BIMAUTAMAS! Selamat! Bagi Anda yang terpilih sebagai
+                Peserta Bootcamp Fresh Graduate Academy Digital Talent
+                Scholarship Batch 1 Tahun 2023 (FGA DTS), program ...
+              </Typography>
+              <Box sx={{ display: 'flex', alignItems: 'center' }}>
+                <Typography
+                  variant="body2"
+                  fontWeight={300}
+                  sx={{ color: '#757575' }}
+                >
+                  16 March 2023
+                </Typography>
+                <Box
+                  width={6}
+                  height={6}
+                  borderRadius={100}
+                  bgcolor="#D9D9D9"
+                  mx={2.5}
+                ></Box>
+                <Box
+                  borderRadius={16}
+                  bgcolor="#F2F2F2"
+                  px={1.5}
+                  py={1}
+                  fontSize={12}
+                >
+                  Relationships
+                </Box>
+              </Box>
+            </Grid>
+            <Grid xs={5} sx={{ position: 'relative' }}>
+              <Image
+                src={ILSampleArticleCover}
+                alt="sample"
+                fill
+                style={{ borderRadius: 4, paddingLeft: 34 }}
+              ></Image>
+            </Grid>
+          </Grid>
+        ))}
+      </Grid>
+      <Grid xs={4} sx={{ pl: 7.25 }}>
+        <Typography fontWeight={600} sx={{ mb: 4 }}>
+          Discover more of what matters to you
+        </Typography>
+        <Box sx={{ display: 'flex', flexWrap: 'wrap' }}>
+          {sampleLabels.map((item: any) => (
+            <Box
+              key={item}
+              bgcolor="#F2F2F2"
+              borderRadius={16}
+              px={1.5}
+              py={1}
+              fontSize={12}
+              mr={1}
+              mb={1.5}
+            >
+              {item}
+            </Box>
+          ))}
+        </Box>
+      </Grid>
+    </Grid>
   )
 }

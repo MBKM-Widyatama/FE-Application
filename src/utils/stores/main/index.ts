@@ -1,32 +1,24 @@
 import { create } from 'zustand'
 import React from 'react'
-import {
-  UserOutlined,
-  VideoCameraOutlined,
-  UploadOutlined,
-} from '@ant-design/icons'
-import { MainStates } from './types/states'
+import AddToQueueIcon from '@mui/icons-material/AddToQueue'
 import { MainActions } from './types/action'
 
-export const useMainStore = create<MainStates & MainActions>()((set) => ({
+export const useMainStore = create<any & MainActions>()((set) => ({
   menuItems: [
-    { key: '1', label: 'Dashboard', icon: React.createElement(UserOutlined) },
+    { label: 'Dashboard', icon: React.createElement(AddToQueueIcon) },
     {
-      key: '2',
       label: 'Research',
-      icon: React.createElement(VideoCameraOutlined),
+      icon: React.createElement(AddToQueueIcon),
       children: [],
     },
     {
-      key: '3',
       label: 'ABIMAS',
-      icon: React.createElement(UploadOutlined),
+      icon: React.createElement(AddToQueueIcon),
       children: [],
     },
     {
-      key: '4',
       label: 'Publications',
-      icon: React.createElement(UserOutlined),
+      icon: React.createElement(AddToQueueIcon),
       children: [],
     },
   ],

@@ -1,15 +1,16 @@
 import React from 'react'
 import Image from 'next/image'
 
+// MUI Components
+import Typography from '@mui/material/Typography'
+
+// Custom Components
+import Button from '@components/Button'
+
 // assets
 import { ILLandingBgHeader } from '@utama/assets/ilustrations'
 
-// antd components
-import { Typography, Button } from 'antd'
-
 export default function PageSignIn() {
-  const { Title, Text } = Typography
-
   return (
     <div
       style={{
@@ -20,12 +21,12 @@ export default function PageSignIn() {
       }}
     >
       <Image src={ILLandingBgHeader} alt="bg-header" fill></Image>
-      <Title
-        style={{
-          fontWeight: 700,
-          fontSize: 48,
-          marginBottom: 20,
-          paddingTop: 92,
+      <Typography
+        variant="h3"
+        sx={{
+          marginBottom: 2.5,
+          paddingTop: 11.5,
+          lineHeight: 1.3,
         }}
         className="font-heading-pro-wide"
       >
@@ -38,37 +39,21 @@ export default function PageSignIn() {
         </span>
         <br /> to the
         <span className="text-gradient font-heading-pro-wide"> world</span>
-      </Title>
-      <Text
-        style={{
-          display: 'block',
-          fontSize: 20,
+      </Typography>
+      <Typography
+        variant="h6"
+        sx={{
+          fontWeight: 'normal',
           color: '#AAAAAA',
-          marginBottom: 60,
+          marginBottom: 7.5,
         }}
       >
         Let&apos;s discover new knowledge and new friends and have a learning
         <br />
         experience with beautiful teachers
-      </Text>
+      </Typography>
 
-      <Button
-        type="primary"
-        shape="round"
-        size="large"
-        style={{
-          fontSize: 14,
-          fontWeight: 500,
-          background:
-            'linear-gradient(89.11deg, #2C5BF7 1.73%, #40B4FD 98.05%)',
-          boxShadow: 'none',
-          border: 0,
-          padding: '0 28px',
-          height: 46,
-        }}
-      >
-        Get Started
-      </Button>
+      <Button label="Get Started" onClick={() => {}} />
     </div>
   )
 }
