@@ -11,9 +11,9 @@ import {
 
 export interface Menu {
   label: string
-  path: string
   icon: string
   iconActive: string
+  path?: string
   children?: {
     label: string
     path: string
@@ -29,37 +29,36 @@ export const listMenu: Menu[] = [
   },
   {
     label: 'Master Data',
-    path: '',
     icon: ICResearch,
     iconActive: '',
     children: [
       {
         label: 'Users',
-        path: '/cms/users',
+        path: '/cms/master-data/users',
       },
       {
         label: 'Faculties',
-        path: '/cms/faculties',
+        path: '/cms/master-data/faculties',
       },
       {
         label: 'Lecturers',
-        path: '/cms/fecturers',
+        path: '/cms/master-data/fecturers',
       },
       {
         label: 'Courses',
-        path: '/cms/courses',
+        path: '/cms/master-data/courses',
       },
       {
         label: 'Schemas',
-        path: '/cms/schemas',
+        path: '/cms/master-data/schemas',
       },
       {
         label: 'Categorial News',
-        path: '/cms/categorial-news',
+        path: '/cms/master-data/categorial-news',
       },
       {
         label: 'News',
-        path: '/cms/news',
+        path: '/cms/master-data/news',
       },
     ],
   },

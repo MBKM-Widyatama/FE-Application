@@ -16,3 +16,7 @@ export { default as ICDashboardLight } from './sidebar/ICDashboardLight.svg'
 export { default as ICResearch } from './sidebar/ICResearch.svg'
 export { default as ICAbimas } from './sidebar/ICAbimas.svg'
 export { default as ICPublications } from './sidebar/ICPublications.svg'
+
+// cms
+export { default as ICMessage } from './cms/message.svg'
+export { default as ICTrashbin } from './cms/trashbin.svg'

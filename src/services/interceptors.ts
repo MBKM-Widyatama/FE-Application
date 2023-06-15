@@ -10,21 +10,10 @@ export const requestInterceptor = (config: InternalAxiosRequestConfig) => {
     return newConfig
   }
 
-  if (config.params) {
-    newConfig.params = decamelizeKeys(config.params)
-  }
-
-  if (config.data) {
-    newConfig.data = decamelizeKeys(config.data)
-  }
-
   return newConfig
 }
 
-export const responseInterceptor = (res: AxiosResponse<CommonApiResult>) => {
-  res.data = camelizeKeys(res.data)
-
-  return res.data.data
-}
+export const responseInterceptor = (res: AxiosResponse<CommonApiResult>) =>
+  res.data.data
 
 export const errorInterceptor = (err: any) => err

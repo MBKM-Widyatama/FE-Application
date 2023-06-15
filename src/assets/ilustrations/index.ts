@@ -1,11 +1,5 @@
-import ILLoginBgBottom from './login-bg-bottom.svg'
-import ILLandingBgHeader from './landing-bg-header.svg'
-import ILLandingBgBottom from './landing-bg-bottom.svg'
-import ILSampleArticleCover from './sample-article-cover.png'
-
-export {
-  ILLoginBgBottom,
-  ILLandingBgHeader,
-  ILLandingBgBottom,
-  ILSampleArticleCover,
-}
+export { default as ILLoginBgBottom } from './login-bg-bottom.svg'
+export { default as ILLandingBgHeader } from './landing-bg-header.svg'
+export { default as ILLandingBgBottom } from './landing-bg-bottom.svg'
+export { default as ILSampleArticleCover } from './sample-article-cover.png'
+export { default as ILSampleAvatar } from './sample-avatar.png'

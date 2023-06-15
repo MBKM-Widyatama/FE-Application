@@ -164,7 +164,8 @@ export default function MainLayout(props: React.PropsWithChildren) {
         component="main"
         sx={{
           flexGrow: 1,
-          p: 4,
+          px: 5,
+          py: 7.5,
           overflowX: 'hidden',
           backgroundColor: '#F5F7FB',
           minHeight: '100vh',
