@@ -17,6 +17,8 @@ body {
 
 * {
   box-sizing: border-box;
+  padding: 0;
+  margin: 0;
   font-family: 'Poppins', sans-serif !important;
 }
 
@@ -44,6 +46,11 @@ a {
   background: -webkit-linear-gradient(0deg, #4046fd, #40b4fd);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+/* Textfield */
+fieldset {
+  border-radius: 8px !important;
 }
 
 .trigger {
