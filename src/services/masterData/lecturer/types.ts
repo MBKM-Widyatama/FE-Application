@@ -1,13 +1,11 @@
-export interface Faculty {
+export interface Lecturer {
   id: string
   name: string
-  leader: string
   created_at: number
   updated_at: number
   deleted_at: number
 }
 
-export interface PayloadFaculty {
+export interface PayloadLecturer {
   name: string
-  leader: string
 }
