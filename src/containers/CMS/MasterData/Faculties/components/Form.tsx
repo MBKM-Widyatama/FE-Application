@@ -214,7 +214,7 @@ export default function Form(props: Props) {
                       fontWeight={500}
                       sx={{ fontSize: 12 }}
                     >
-                      Faculties Detail
+                      Faculties Name
                     </Typography>
                     <Typography
                       variant="body2"

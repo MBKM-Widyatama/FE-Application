@@ -2,8 +2,8 @@ import { useContext, useState } from 'react'
 import { AppContext } from '@providers/ContextApiProvider'
 
 import { useQuery } from 'react-query'
-import service from '@services/masterData/course'
-import { Course } from '@services/masterData/course/types'
+import service from '@services/masterData/newsCategory'
+import { NewsCategory } from '@services/masterData/newsCategory/types'
 
 import { formatDate } from '@utils/formatter/formatDate'
 
@@ -25,7 +25,7 @@ import Table from '@components/Table'
 // Private Components
 import Form from './components/Form'
 
-export default function Courses() {
+export default function Faculties() {
   const { setSnackbar, setLoading } = useContext(AppContext)
 
   const [page, setPage] = useState(1)
@@ -34,25 +34,28 @@ export default function Courses() {
     type: '',
   })
 
-  const [detailData, setDetailData] = useState<Course | null>(null)
+  const [detailData, setDetailData] = useState<NewsCategory | null>(null)
 
   const dataTableHead = [
     { name: 'No' },
-    { name: 'Course Name' },
-    { name: 'Faculty Name' },
+    { name: 'Name' },
     { name: 'Created Date' },
     { name: 'Updated Date' },
     { name: 'Action' },
   ]
 
-  const { data } = useQuery(['courses', page], async () => service.get(), {
-    onError: (error: any) =>
-      setSnackbar({
-        open: true,
-        text: error.data.message,
-        variant: 'error',
-      }),
-  })
+  const { data } = useQuery(
+    ['news-category', page],
+    async () => service.get(),
+    {
+      onError: (error: any) =>
+        setSnackbar({
+          open: true,
+          text: error.data.message,
+          variant: 'error',
+        }),
+    },
+  )
 
   return (
     <Grid container spacing={3.5}>
@@ -91,11 +94,10 @@ export default function Courses() {
       <Grid item xs={12}>
         <Table dataHead={dataTableHead}>
           <TableBody>
-            {data?.content?.map((item: Course, index: number) => (
+            {data?.content?.map((item: NewsCategory, index: number) => (
               <TableRow key={index} sx={{ height: 112 }}>
                 <TableCell align="center">{index + 1}</TableCell>
                 <TableCell align="center">{item.name}</TableCell>
-                <TableCell align="center">{item.leader_id}</TableCell>
                 <TableCell align="center">
                   {formatDate(item.created_at)}
                 </TableCell>

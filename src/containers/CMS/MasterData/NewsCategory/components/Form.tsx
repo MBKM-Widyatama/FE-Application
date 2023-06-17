@@ -3,8 +3,11 @@ import { AppContext } from '@providers/ContextApiProvider'
 import Image from 'next/image'
 
 import { useMutation, useQueryClient } from 'react-query'
-import service from '@services/masterData/course'
-import { Course, PayloadCourse } from '@services/masterData/course/types'
+import service from '@services/masterData/newsCategory'
+import {
+  NewsCategory,
+  PayloadNewsCategory,
+} from '@services/masterData/newsCategory/types'
 
 import { formatDate } from '@utils/formatter/formatDate'
 
@@ -33,16 +36,16 @@ interface Props {
     type: string
   }
   onCloseDialog(e: { open: boolean; type: string }): void
-  data: Course | null
+  data: NewsCategory | null
 }
 
 export default function Form(props: Props) {
   const { setSnackbar, setLoading } = useContext(AppContext)
   const queryClient = useQueryClient()
 
-  const initForm: PayloadCourse = { name: '' }
+  const initForm: PayloadNewsCategory = { name: '' }
 
-  const [form, setForm] = useState<PayloadCourse>(initForm)
+  const [form, setForm] = useState<PayloadNewsCategory>(initForm)
   const [error, setError] = useState<any>('')
 
   const sampleData = [
@@ -81,7 +84,7 @@ export default function Form(props: Props) {
   }
 
   function onApiSuccess(message: string) {
-    queryClient.invalidateQueries('courses')
+    queryClient.invalidateQueries('news-category')
     handleCloseDialog()
     setSnackbar({
       open: true,
@@ -90,7 +93,7 @@ export default function Form(props: Props) {
   }
 
   const createData = useMutation(
-    async (data: PayloadCourse) => service.create(data),
+    async (data: PayloadNewsCategory) => service.create(data),
     {
       onSuccess: () => onApiSuccess('Data updated successfully'),
       onError: (err: any) => validate(err),
@@ -98,7 +101,8 @@ export default function Form(props: Props) {
   )
 
   const updateData = useMutation(
-    async (data: PayloadCourse) => service.update(data, props.data?.id ?? ''),
+    async (data: PayloadNewsCategory) =>
+      service.update(data, props.data?.id ?? ''),
     {
       onSuccess: () => onApiSuccess('Data updated successfully'),
       onError: (err: any) => validate(err),
@@ -198,7 +202,7 @@ export default function Form(props: Props) {
               </Grid>
               <Grid item xs={12}>
                 <Typography fontWeight={600} sx={{ mb: 2.5 }}>
-                  Courses Detail
+                  News Category Detail
                 </Typography>
 
                 <Box
@@ -214,7 +218,7 @@ export default function Form(props: Props) {
                       fontWeight={500}
                       sx={{ fontSize: 12 }}
                     >
-                      Courses Name
+                      Name
                     </Typography>
                     <Typography
                       variant="body2"
@@ -222,25 +226,6 @@ export default function Form(props: Props) {
                       sx={{ fontSize: 12 }}
                     >
                       {props.data?.name}
-                    </Typography>
-                  </Box>
-                  <Divider sx={{ width: '100%', my: 2 }} />
-
-                  <Box display="flex" justifyContent="space-between">
-                    <Typography
-                      variant="body2"
-                      color="#828282"
-                      fontWeight={500}
-                      sx={{ fontSize: 12 }}
-                    >
-                      Faculty Name
-                    </Typography>
-                    <Typography
-                      variant="body2"
-                      fontWeight={500}
-                      sx={{ fontSize: 12 }}
-                    >
-                      {/* {props.data?.} */}
                     </Typography>
                   </Box>
                   <Divider sx={{ width: '100%', my: 2 }} />
@@ -316,7 +301,7 @@ export default function Form(props: Props) {
           <Grid container item lg={12} md={12} xs={12} spacing={3}>
             <Grid item xs={12}>
               <Typography variant="body2" sx={{ marginBottom: 1 }}>
-                Course Name
+                Name
               </Typography>
               <TextField
                 fullWidth
@@ -331,35 +316,6 @@ export default function Form(props: Props) {
                   style: { fontSize: 14, height: 46 },
                 }}
               />
-            </Grid>
-            <Grid item xs={12}>
-              <Typography variant="body2" sx={{ marginBottom: 1 }}>
-                Faculty Name
-              </Typography>
-              <FormControl fullWidth>
-                <Select
-                  displayEmpty
-                  inputProps={{ 'aria-label': 'Without label' }}
-                  name="faculty"
-                  // value={form.name}
-                  // onChange={handleChange}
-                  sx={{ fontSize: 14, height: 46 }}
-                >
-                  <MenuItem value="" disabled={true}>
-                    <em>Select</em>
-                  </MenuItem>
-                  {sampleData.map((item: { id: string; name: string }) => (
-                    <MenuItem key={item.id} value={item.id}>
-                      {item.name}
-                    </MenuItem>
-                  ))}
-                </Select>
-                {error.name ? (
-                  <FormHelperText>{error.name}</FormHelperText>
-                ) : (
-                  ''
-                )}
-              </FormControl>
             </Grid>
           </Grid>
         )
