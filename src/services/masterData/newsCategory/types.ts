@@ -1,13 +1,11 @@
-export interface Faculty {
+export interface NewsCategory {
   id: string
   name: string
-  leader: string
   created_at: number
   updated_at: number
   deleted_at: number
 }
 
-export interface PayloadFaculty {
+export interface PayloadNewsCategory {
   name: string
-  leader: string
 }
