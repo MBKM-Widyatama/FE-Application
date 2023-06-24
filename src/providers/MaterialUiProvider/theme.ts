@@ -16,6 +16,16 @@ const theme = {
     secondary: {
       main: '#cccccc',
     },
+    success: {
+      main: '#D5F2EA',
+      dark: '#00C48C',
+      contrastText: '#fff',
+    },
+    warning: {
+      main: '#FFEEDE',
+      dark: '#EE5B09',
+      contrastText: '#fff',
+    },
   },
 }
 

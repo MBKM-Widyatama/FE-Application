@@ -67,7 +67,20 @@ export const listMenu: Menu[] = [
     path: '',
     icon: ICResearch,
     iconActive: '',
-    children: [],
+    children: [
+      {
+        label: 'Initial Report',
+        path: '/cms/penelitian/initial-report',
+      },
+      {
+        label: 'Progress Report',
+        path: '/cms/penelitian/progress-report',
+      },
+      {
+        label: 'Final Report',
+        path: '/cms/penelitian/final-report',
+      },
+    ],
   },
   {
     label: 'ABIMAS',
