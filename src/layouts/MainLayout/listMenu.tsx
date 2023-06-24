@@ -42,7 +42,7 @@ export const listMenu: Menu[] = [
       },
       {
         label: 'Lecturers',
-        path: '/cms/master-data/fecturers',
+        path: '/cms/master-data/lecturers',
       },
       {
         label: 'Courses',
@@ -54,7 +54,7 @@ export const listMenu: Menu[] = [
       },
       {
         label: 'Categorial News',
-        path: '/cms/master-data/categorial-news',
+        path: '/cms/master-data/news-category',
       },
       {
         label: 'News',
@@ -67,7 +67,20 @@ export const listMenu: Menu[] = [
     path: '',
     icon: ICResearch,
     iconActive: '',
-    children: [],
+    children: [
+      {
+        label: 'Initial Report',
+        path: '/cms/penelitian/initial-report',
+      },
+      {
+        label: 'Progress Report',
+        path: '/cms/penelitian/progress-report',
+      },
+      {
+        label: 'Final Report',
+        path: '/cms/penelitian/final-report',
+      },
+    ],
   },
   {
     label: 'ABIMAS',

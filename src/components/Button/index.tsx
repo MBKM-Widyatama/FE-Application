@@ -7,6 +7,7 @@ interface ButtonProps {
   color?: 'primary' | 'error'
   fullwidth?: boolean
   notRounded?: boolean
+  disabled?: boolean
 }
 
 export default function Button(props: ButtonProps) {
@@ -16,6 +17,7 @@ export default function Button(props: ButtonProps) {
       color={props.color ?? 'primary'}
       variant="contained"
       onClick={props.onClick}
+      disabled={props.disabled}
       sx={{
         fontSize: 14,
         fontWeight: 500,

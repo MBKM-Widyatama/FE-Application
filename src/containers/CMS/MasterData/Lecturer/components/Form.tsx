@@ -3,8 +3,8 @@ import { AppContext } from '@providers/ContextApiProvider'
 import Image from 'next/image'
 
 import { useMutation, useQueryClient } from 'react-query'
-import service from '@services/masterData/faculty'
-import { Faculty, PayloadFaculty } from '@services/masterData/faculty/types'
+import service from '@services/masterData/lecturer'
+import { Lecturer, PayloadLecturer } from '@services/masterData/lecturer/types'
 
 import { formatDate } from '@utils/formatter/formatDate'
 
@@ -33,16 +33,17 @@ interface Props {
     type: string
   }
   onCloseDialog(e: { open: boolean; type: string }): void
-  data: Faculty | null
+  data: Lecturer | null
 }
 
 export default function Form(props: Props) {
   const { setSnackbar, setLoading } = useContext(AppContext)
   const queryClient = useQueryClient()
 
-  const initForm: PayloadFaculty = { name: '', leader: '' }
+  // const initForm: PayloadLecturer = { name: '', course: '', faculty: '' }
+  const initForm: any = { name: '', course: '', faculty: '' }
 
-  const [form, setForm] = useState<PayloadFaculty>(initForm)
+  const [form, setForm] = useState<PayloadLecturer>(initForm)
   const [error, setError] = useState<any>('')
 
   const sampleData = [
@@ -81,7 +82,7 @@ export default function Form(props: Props) {
   }
 
   function onApiSuccess(message: string) {
-    queryClient.invalidateQueries('faculites')
+    queryClient.invalidateQueries('lecturers')
     handleCloseDialog()
     setSnackbar({
       open: true,
@@ -90,7 +91,7 @@ export default function Form(props: Props) {
   }
 
   const createData = useMutation(
-    async (data: PayloadFaculty) => service.create(data),
+    async (data: PayloadLecturer) => service.create(data),
     {
       onSuccess: () => onApiSuccess('Data updated successfully'),
       onError: (err: any) => validate(err),
@@ -98,7 +99,7 @@ export default function Form(props: Props) {
   )
 
   const updateData = useMutation(
-    async (data: PayloadFaculty) => service.update(data, props.data?.id ?? ''),
+    async (data: PayloadLecturer) => service.update(data, props.data?.id ?? ''),
     {
       onSuccess: () => onApiSuccess('Data updated successfully'),
       onError: (err: any) => validate(err),
@@ -198,7 +199,7 @@ export default function Form(props: Props) {
               </Grid>
               <Grid item xs={12}>
                 <Typography fontWeight={600} sx={{ mb: 2.5 }}>
-                  Faculties Detail
+                  Lecturer Detail
                 </Typography>
 
                 <Box
@@ -214,7 +215,7 @@ export default function Form(props: Props) {
                       fontWeight={500}
                       sx={{ fontSize: 12 }}
                     >
-                      Faculties Name
+                      Name
                     </Typography>
                     <Typography
                       variant="body2"
@@ -233,14 +234,33 @@ export default function Form(props: Props) {
                       fontWeight={500}
                       sx={{ fontSize: 12 }}
                     >
-                      Faculty’s Leader
+                      Course
                     </Typography>
                     <Typography
                       variant="body2"
                       fontWeight={500}
                       sx={{ fontSize: 12 }}
                     >
-                      {props.data?.leader}
+                      {props.data?.course}
+                    </Typography>
+                  </Box>
+                  <Divider sx={{ width: '100%', my: 2 }} />
+
+                  <Box display="flex" justifyContent="space-between">
+                    <Typography
+                      variant="body2"
+                      color="#828282"
+                      fontWeight={500}
+                      sx={{ fontSize: 12 }}
+                    >
+                      Faculty
+                    </Typography>
+                    <Typography
+                      variant="body2"
+                      fontWeight={500}
+                      sx={{ fontSize: 12 }}
+                    >
+                      {props.data?.faculty}
                     </Typography>
                   </Box>
                   <Divider sx={{ width: '100%', my: 2 }} />
@@ -291,10 +311,9 @@ export default function Form(props: Props) {
                 color="primary"
                 notRounded
                 onClick={() => {
-                  setForm({
-                    name: props.data?.name ?? '',
-                    leader: props.data?.leader ?? '',
-                  })
+                  // setForm({
+                  //   name: props.data?.name ?? ''
+                  // })
                   props.onCloseDialog({ open: true, type: 'Update' })
                 }}
               />
@@ -317,7 +336,7 @@ export default function Form(props: Props) {
           <Grid container item lg={12} md={12} xs={12} spacing={3}>
             <Grid item xs={12}>
               <Typography variant="body2" sx={{ marginBottom: 1 }}>
-                Faculty Name
+                Lecturer Name
               </Typography>
               <FormControl fullWidth>
                 <Select
@@ -346,14 +365,14 @@ export default function Form(props: Props) {
             </Grid>
             <Grid item xs={12}>
               <Typography variant="body2" sx={{ marginBottom: 1 }}>
-                Faculty Leader
+                Lecturer Leader
               </Typography>
               <TextField
                 fullWidth
                 variant="outlined"
                 name="leader"
                 placeholder="Type here anything"
-                value={form.leader}
+                // value={form.leader}
                 onChange={handleChange}
                 error={!!error.leader}
                 helperText={error.leader}

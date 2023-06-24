@@ -3,8 +3,11 @@ import { AppContext } from '@providers/ContextApiProvider'
 import Image from 'next/image'
 
 import { useMutation, useQueryClient } from 'react-query'
-import service from '@services/masterData/faculty'
-import { Faculty, PayloadFaculty } from '@services/masterData/faculty/types'
+import service from '@services/masterData/newsCategory'
+import {
+  NewsCategory,
+  PayloadNewsCategory,
+} from '@services/masterData/newsCategory/types'
 
 import { formatDate } from '@utils/formatter/formatDate'
 
@@ -33,16 +36,16 @@ interface Props {
     type: string
   }
   onCloseDialog(e: { open: boolean; type: string }): void
-  data: Faculty | null
+  data: NewsCategory | null
 }
 
 export default function Form(props: Props) {
   const { setSnackbar, setLoading } = useContext(AppContext)
   const queryClient = useQueryClient()
 
-  const initForm: PayloadFaculty = { name: '', leader: '' }
+  const initForm: PayloadNewsCategory = { name: '' }
 
-  const [form, setForm] = useState<PayloadFaculty>(initForm)
+  const [form, setForm] = useState<PayloadNewsCategory>(initForm)
   const [error, setError] = useState<any>('')
 
   const sampleData = [
@@ -81,7 +84,7 @@ export default function Form(props: Props) {
   }
 
   function onApiSuccess(message: string) {
-    queryClient.invalidateQueries('faculites')
+    queryClient.invalidateQueries('news-category')
     handleCloseDialog()
     setSnackbar({
       open: true,
@@ -90,7 +93,7 @@ export default function Form(props: Props) {
   }
 
   const createData = useMutation(
-    async (data: PayloadFaculty) => service.create(data),
+    async (data: PayloadNewsCategory) => service.create(data),
     {
       onSuccess: () => onApiSuccess('Data updated successfully'),
       onError: (err: any) => validate(err),
@@ -98,7 +101,8 @@ export default function Form(props: Props) {
   )
 
   const updateData = useMutation(
-    async (data: PayloadFaculty) => service.update(data, props.data?.id ?? ''),
+    async (data: PayloadNewsCategory) =>
+      service.update(data, props.data?.id ?? ''),
     {
       onSuccess: () => onApiSuccess('Data updated successfully'),
       onError: (err: any) => validate(err),
@@ -198,7 +202,7 @@ export default function Form(props: Props) {
               </Grid>
               <Grid item xs={12}>
                 <Typography fontWeight={600} sx={{ mb: 2.5 }}>
-                  Faculties Detail
+                  News Category Detail
                 </Typography>
 
                 <Box
@@ -214,7 +218,7 @@ export default function Form(props: Props) {
                       fontWeight={500}
                       sx={{ fontSize: 12 }}
                     >
-                      Faculties Name
+                      Name
                     </Typography>
                     <Typography
                       variant="body2"
@@ -222,25 +226,6 @@ export default function Form(props: Props) {
                       sx={{ fontSize: 12 }}
                     >
                       {props.data?.name}
-                    </Typography>
-                  </Box>
-                  <Divider sx={{ width: '100%', my: 2 }} />
-
-                  <Box display="flex" justifyContent="space-between">
-                    <Typography
-                      variant="body2"
-                      color="#828282"
-                      fontWeight={500}
-                      sx={{ fontSize: 12 }}
-                    >
-                      Faculty’s Leader
-                    </Typography>
-                    <Typography
-                      variant="body2"
-                      fontWeight={500}
-                      sx={{ fontSize: 12 }}
-                    >
-                      {props.data?.leader}
                     </Typography>
                   </Box>
                   <Divider sx={{ width: '100%', my: 2 }} />
@@ -293,7 +278,6 @@ export default function Form(props: Props) {
                 onClick={() => {
                   setForm({
                     name: props.data?.name ?? '',
-                    leader: props.data?.leader ?? '',
                   })
                   props.onCloseDialog({ open: true, type: 'Update' })
                 }}
@@ -317,46 +301,17 @@ export default function Form(props: Props) {
           <Grid container item lg={12} md={12} xs={12} spacing={3}>
             <Grid item xs={12}>
               <Typography variant="body2" sx={{ marginBottom: 1 }}>
-                Faculty Name
-              </Typography>
-              <FormControl fullWidth>
-                <Select
-                  displayEmpty
-                  inputProps={{ 'aria-label': 'Without label' }}
-                  name="name"
-                  value={form.name}
-                  onChange={handleChange}
-                  sx={{ fontSize: 14, height: 46 }}
-                >
-                  <MenuItem value="" disabled={true}>
-                    <em>Select</em>
-                  </MenuItem>
-                  {sampleData.map((item: { id: string; name: string }) => (
-                    <MenuItem key={item.id} value={item.id}>
-                      {item.name}
-                    </MenuItem>
-                  ))}
-                </Select>
-                {error.name ? (
-                  <FormHelperText>{error.name}</FormHelperText>
-                ) : (
-                  ''
-                )}
-              </FormControl>
-            </Grid>
-            <Grid item xs={12}>
-              <Typography variant="body2" sx={{ marginBottom: 1 }}>
-                Faculty Leader
+                Name
               </Typography>
               <TextField
                 fullWidth
                 variant="outlined"
-                name="leader"
+                name="name"
                 placeholder="Type here anything"
-                value={form.leader}
+                value={form.name}
                 onChange={handleChange}
-                error={!!error.leader}
-                helperText={error.leader}
+                error={!!error.name}
+                helperText={error.name}
                 InputProps={{
                   style: { fontSize: 14, height: 46 },
                 }}
