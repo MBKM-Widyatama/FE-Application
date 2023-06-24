@@ -241,7 +241,7 @@ export default function Form(props: Props) {
                       fontWeight={500}
                       sx={{ fontSize: 12 }}
                     >
-                      {props.data?.course}
+                      {/* {props.data?.course} */}
                     </Typography>
                   </Box>
                   <Divider sx={{ width: '100%', my: 2 }} />
@@ -260,7 +260,7 @@ export default function Form(props: Props) {
                       fontWeight={500}
                       sx={{ fontSize: 12 }}
                     >
-                      {props.data?.faculty}
+                      {/* {props.data?.faculty} */}
                     </Typography>
                   </Box>
                   <Divider sx={{ width: '100%', my: 2 }} />
